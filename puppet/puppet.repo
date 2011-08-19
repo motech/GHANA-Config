@@ -1,0 +1,5 @@
+[puppet]
+name=Repo for puppet installs
+baseurl=http://yum.puppetlabs.com/
+enabled=1
+gpgcheck=1
