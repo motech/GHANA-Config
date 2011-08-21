@@ -5,7 +5,7 @@ class mcollective {
   package { "mcollective-common":
     provider => "yum",
     ensure => "present",
-    require => Package[Yumrepo[puppetlabs], "rubygem-stomp"]]
+    require => Package[Yumrepo[puppetlabs], Package["rubygem-stomp"]]
   }
 
   package { "mcollective":
