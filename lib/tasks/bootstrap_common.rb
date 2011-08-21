@@ -1,9 +1,7 @@
-DEFAULT_SSH_PORT = 22
-
-def validate_args(args)
-  fail "No node specified" if args[:node].nil?
-  fail "You must specify a user to run this command as" if args[:user].nil?
-  return "#{args[:node]}", "#{args[:user]}"
+def validate_args
+  fail "No node specified" if ENV['node'].nil?
+  fail "You must specify a user to run this command as" if ENV['user'].nil?
+  return ENV['node'], ENV['user']
 end
 
 def scp(files, node, user)
@@ -20,4 +18,12 @@ def remote_execute(command, node, user)
   remote_execute_command = "ssh -t #{node} -l #{user} \"#{command}\""
   puts "Executing: #{remote_execute_command}"
   system(remote_execute_command)
+end
+
+def copy_and_execute files_dir, file_name, command
+  node, user = validate_args
+  file = "#{files_dir}/#{file_name}"
+  #command = "sudo /bin/bash /tmp/#{file_name}"
+  scp(file, node, user)
+  remote_execute_verify(command, node, user)
 end

@@ -7,19 +7,13 @@ namespace :puppet_master do
 
   desc "sets up puppet master machine"
   task :bootstrap, :node, :user do |task, args|
-    node, user = validate_args(args)
     file_name = "puppetmaster_add.sh"
-
-    scp("#{@files_dir}/#{file_name}", node, user)
-    remote_execute_verify("sudo /bin/bash /tmp/#{file_name}", node, user)
+    copy_and_execute(@files_dir, file_name, args)
   end
 
   desc "tears down a puppet master machine"
   task :teardown, :node, :user do |task, args|
-    node, user = validate_args(args)
     file_name = "puppetmaster_remove.sh"
-
-    scp("#{@files_dir}/#{file_name}", node, user)
-    remote_execute_verify("sudo /bin/bash /tmp/#{file_name}", node, user)
+    copy_and_execute(@files_dir, file_name, args)
   end
 end
