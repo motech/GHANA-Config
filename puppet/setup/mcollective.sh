@@ -1,4 +1,4 @@
-sudo wget https://raw.github.com/motech/GHANA-Config/master/puppet/puppet.repo -O /etc/yum.repos.d/puppet.repo
+sudo wget https://raw.github.com/motech/GHANA-Config/master/puppet/puppetlabs.repo -O /etc/yum.repos.d/puppetlabs.repo
 # sudo yum -y upgrade
 
 sudo yum install -y java-1.6.0-openjdk 
