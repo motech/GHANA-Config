@@ -28,7 +28,10 @@ namespace :agent do
   desc "removes an agent from the collective"
   task :teardown do
     file_name = "machine_remove.sh"
-    validate_and_copy(file_name)
+    node, user, puppetmaster = validate_and_copy(file_name)
+
+    puppet_master = PuppetMaster.new(puppetmaster, user)
+    puppet_master.remove_certificate node
   end
 end
 
