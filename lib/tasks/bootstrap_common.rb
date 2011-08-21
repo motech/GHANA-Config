@@ -20,10 +20,10 @@ def remote_execute(command, node, user)
   system(remote_execute_command)
 end
 
-def copy_and_execute files_dir, file_name, command
+def copy_and_execute files_dir, file_name, args=""
   node, user = validate_args
   file = "#{files_dir}/#{file_name}"
-  #command = "sudo /bin/bash /tmp/#{file_name}"
+  command = "sudo /bin/bash /tmp/#{file_name} #{args}"
   scp(file, node, user)
   remote_execute_verify(command, node, user)
 end
