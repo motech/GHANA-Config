@@ -26,4 +26,5 @@ def copy_and_execute files_dir, file_name, args=""
   command = "sudo /bin/bash /tmp/#{file_name} #{args}"
   scp(file, node, user)
   remote_execute_verify(command, node, user)
+  return node, user
 end
