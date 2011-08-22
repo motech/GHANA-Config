@@ -10,7 +10,6 @@ namespace :agent do
   task :bootstrap do
     file_name = "machine_add.sh"
     node, user, puppetmaster = validate_and_copy(file_name)
-    #node, user, puppetmaster = ENV['node'], ENV['user'], ENV['puppetmaster']
 
     puppet_master = PuppetMaster.new(puppetmaster, user)
     puppet_master.sign_certificate node
@@ -19,7 +18,7 @@ namespace :agent do
     remote_execute(stop_puppet_command, node, user)
 
     puts "****executing first puppet update"
-    puppet_update_command = "sudo /usr/sbin/puppetd --no-daemonize --onetime --verbose"
+    puppet_update_command = "sudo /usr/sbin/puppetd --no-daemonize --onetime --verbose --environment development"
     remote_execute(puppet_update_command, node, user)
 
     puts "****system setup successful!"
