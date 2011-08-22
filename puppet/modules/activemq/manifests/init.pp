@@ -1,16 +1,16 @@
 class activemq {
-  include repos::nbnco
+  include repos::puppetlabs
   include ruby::rubygem_stomp
   include java::open_jdk
 
   package { "tanukiwrapper":
     ensure  =>  "present",
-    require   => Yumrepo[puppetlabs]
+    require   => Package[puppetlabs-repo]
   }
 
   package { "activemq":
     ensure    => "present",
-    require   => [Yumrepo[puppetlabs], Package["tanukiwrapper"]]
+    require   => [Package[puppetlabs-repo], Package["tanukiwrapper"]]
   }
 
   service { "activemq":

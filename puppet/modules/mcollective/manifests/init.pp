@@ -11,7 +11,7 @@ class mcollective {
   package { "mcollective":
     provider => "yum",
     ensure   => "present",
-    require  => [Yumrepo[puppetlabs], Package["mcollective-common"]]
+    require  => [Package[puppetlabs-repo], Package["mcollective-common"]]
   }
 
   file { "/etc/mcollective/server.cfg":
