@@ -14,7 +14,7 @@ if [ -d $repo_location ] ; then
 fi
 
 mkdir -p $repo_location
-git clone git://github.com/motech/GHANA-Config.git $repo_location
+git clone git://github.com/motech/GHANA-Config.git $repo_location/GHANA-Config
 
 cat > /etc/puppet/puppet.conf <<EOF
 [main]
