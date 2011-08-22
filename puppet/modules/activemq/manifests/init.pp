@@ -5,7 +5,7 @@ class activemq {
 
   package { "tanukiwrapper":
     ensure  =>  "present",
-    require   => Package[puppetlabs-repo]
+    require => Package[puppetlabs-repo]
   }
 
   package { "activemq":
@@ -16,6 +16,6 @@ class activemq {
   service { "activemq":
     enable => true,
     ensure => running,
-    require => [Package["activemq"]
+    require => Package["activemq"]
   }
 }
