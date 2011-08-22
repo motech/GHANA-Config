@@ -6,7 +6,7 @@ sudo rpm -Uvh http://yum.puppetlabs.com/base/puppetlabs-repo-3.0-2.noarch.rpm
 sudo rpm -Uvh http://download.fedora.redhat.com/pub/epel/5/x86_64/epel-release-5-4.noarch.rpm
 
 sudo yum install -y ruby rubygems rubygem-stomp
-sudo yum --enablerepo=epel-testing install -y puppet
+sudo yum --enablerepo=epel-testing,tw_devops_custom install -y puppet
 
 grep -w puppet /etc/hosts
 if [ $? -ne 0 ] ; then

@@ -18,11 +18,11 @@ namespace :agent do
     stop_puppet_command = "sudo /sbin/service puppet stop"
     remote_execute(stop_puppet_command, node, user)
 
-    puts "executing first puppet update"
+    puts "****executing first puppet update"
     puppet_update_command = "sudo /usr/sbin/puppetd --no-daemonize --onetime --verbose"
     remote_execute(puppet_update_command, node, user)
 
-    puts "system setup successful!"
+    puts "****system setup successful!"
   end
 
   desc "removes an agent from the collective"
