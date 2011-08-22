@@ -5,13 +5,13 @@ class mcollective {
   package { "mcollective-common":
     provider => "yum",
     ensure => "present",
-    require => Package[Yumrepo[puppetlabs], Package["rubygem-stomp"]]
+    require => [Package[puppetlabs-repo], Package[rubygem-stomp]]
   }
 
   package { "mcollective":
     provider => "yum",
     ensure   => "present",
-    require  => [ Yumrepo[puppetlabs], Package["mcollective-common"]]
+    require  => [Yumrepo[puppetlabs], Package["mcollective-common"]]
   }
 
   file { "/etc/mcollective/server.cfg":
@@ -26,7 +26,6 @@ class mcollective {
     hasstatus  => true,
     hasrestart => true,
     ensure     => true,
-    require    => [ Package["mcollective"],
-                    File["/etc/mcollective/server.cfg"]],
+    require    => [Package["mcollective"], File["/etc/mcollective/server.cfg"]],
   }
 }

@@ -1,8 +1,12 @@
 class repos::puppetlabs {
-  yumrepo { puppetlabs:
-    descr    => 'Repo for puppet libraries',
-    baseurl  => 'http://yum.puppetlabs.com/',
-    enabled  => 1,
-    gpgcheck => 0,
+  file { "/usr/local/src/puppetlabs-repo-3.0-2.noarch.rpm":
+    source => "puppet://puppet/modules/repos/puppetlabs-repo-3.0-2.noarch.rpm"
+  }
+
+  package { "puppetlabs-repo":
+    provider => "rpm",
+    ensure => "present",
+    source => "/usr/local/src/puppetlabs-repo-3.0-2.noarch.rpm",
+    require => File["/usr/local/src/puppetlabs-repo-3.0-2.noarch.rpm"]
   }
 }
