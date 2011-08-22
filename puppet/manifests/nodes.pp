@@ -1,13 +1,12 @@
 node base {
-  include mcollective::config
+  include mcollective::agent
 }
 
 node default inherits base {
 }
 
-node 'sifynode11.thoughtworks.com' {
+node 'sifynode42.thoughtworks.com' inherits base {
   include activemq
-  include mcollective::config
   include puppetmaster
 }
 
@@ -17,4 +16,3 @@ node 'sifynode35.thoughtworks.com' inherits base {
 
 node 'sifynode36.thoughtworks.com' inherits base {
 }
-
