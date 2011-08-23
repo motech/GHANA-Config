@@ -15,6 +15,5 @@ class mcollective::client inherits mcollective {
 
   File["/etc/mcollective/client.cfg"] {
     content => template("mcollective/client.cfg.erb"),
-    require    => [File["/etc/mcollective/client.cfg"]]
   }
 }
