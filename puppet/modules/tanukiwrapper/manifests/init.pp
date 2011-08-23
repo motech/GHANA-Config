@@ -1,6 +1,6 @@
 class tanukiwrapper {
   file { "/usr/local/src/tanukiwrapper-3.2.3-1jpp.x86_64.rpm":
-    source => "puppet://puppet/modules/repos/tanukiwrapper-3.2.3-1jpp.x86_64.rpm"
+    source => "puppet://puppet/modules/tanukiwrapper/tanukiwrapper-3.2.3-1jpp.x86_64.rpm"
   }
 
   package { "tanukiwrapper":
