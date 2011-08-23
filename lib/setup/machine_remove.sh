@@ -6,3 +6,4 @@ sudo yum erase -y puppet rubygem-stomp puppetlabs-repo
 sudo sed 's/\(.*\)puppet//' /etc/hosts > /tmp/hosts
 sudo mv /tmp/hosts /etc/hosts
 
+sudo rm -rf /etc/mcollective/ /var/lib/puppet
