@@ -2,7 +2,7 @@ class mcollective::agent inherits mcollective {
   package { "mcollective":
     provider => "yum",
     ensure   => "present",
-    require  => Package["mcollective-common"]]
+    require  => Package["mcollective-common"]
   }
 
   file { "/etc/mcollective/server.cfg":
