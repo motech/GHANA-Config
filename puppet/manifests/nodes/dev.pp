@@ -1,4 +1,4 @@
-node ci inherits base {
+node dev inherits base {
   $collective = "dev"
 }
 
