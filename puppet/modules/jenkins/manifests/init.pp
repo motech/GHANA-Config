@@ -4,7 +4,7 @@ class jenkins {
 
   package { "jenkins":
     ensure  =>  "present",
-    require   => Yumrepo[jenkins], Package["java-1.6.0-openjdk"]
+    require   => [Yumrepo[jenkins], Package["java-1.6.0-openjdk"]]
   }
 
   service {"jenkins":
