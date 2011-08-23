@@ -1,43 +1,59 @@
-<beans xmlns="http://www.springframework.org/schema/beans" xmlns:amq="http://activemq.apache.org/schema/core" 
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://www.springframework.org/schema/beans 
-  http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
-  http://activemq.apache.org/schema/core 
-  http://activemq.apache.org/schema/core/activemq-core.xsd
-  http://activemq.apache.org/camel/schema/spring 
-  http://activemq.apache.org/camel/schema/spring/camel-spring.xsd">
+<beans
+        xmlns="http://www.springframework.org/schema/beans"
+        xmlns:amq="http://activemq.apache.org/schema/core"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+  http://activemq.apache.org/schema/core http://activemq.apache.org/schema/core/activemq-core.xsd
+  http://activemq.apache.org/camel/schema/spring http://activemq.apache.org/camel/schema/spring/camel-spring.xsd">
 
-<broker xmlns="http://activemq.apache.org/schema/core" brokerName="localhost" useJmx="true">
-  <transportConnectors>
-    <transportConnector name="openwire" uri="tcp://0.0.0.0:6166"/>
-    <transportConnector name="stomp"   uri="stomp://0.0.0.0:6163"/>
-  </transportConnectors>
+  <broker xmlns="http://activemq.apache.org/schema/core" brokerName="localhost" useJmx="true">
+    <managementContext>
+      <managementContext createConnector="false"/>
+    </managementContext>
 
-  <plugins>
-    <simpleAuthenticationPlugin>
-      <users>
-        <authenticationUser username="ci" password="ye62kd@" groups="ci,everyone"/>
-        <authenticationUser username="dev" password="p@ssw0rd" groups="dev,everyone"/>
-        <authenticationUser username="uat" password="n%}DB}4" groups="uat,everyone"/>
-        <authenticationUser username="prod" password="Sw7@29@" groups="prod,everyone"/>
-        <authenticationUser username="nbnadmin" password="pp.9P1;6Dy" groups="admin,everyone"/>
-      </users>
-    </simpleAuthenticationPlugin>
+    <plugins>
+      <statisticsBrokerPlugin/>
+      <simpleAuthenticationPlugin>
+        <users>
+          <authenticationUser username="motech" password="MoTeCH" groups="mcollective,everyone"/>
+          <authenticationUser username="mcollective" password="marionette" groups="mcollective,everyone"/>
+          <authenticationUser username="admin" password="secret" groups="mcollective,admin,everyone"/>
+        </users>
+      </simpleAuthenticationPlugin>
+      <authorizationPlugin>
+        <map>
+          <authorizationMap>
+            <authorizationEntries>
+              <authorizationEntry queue=">" write="admins" read="admins" admin="admins"/>
+              <authorizationEntry topic=">" write="admins" read="admins" admin="admins"/>
+              <authorizationEntry topic="mcollective.>" write="mcollective" read="mcollective" admin="mcollective"/>
+              <authorizationEntry queue="mcollective.>" write="mcollective" read="mcollective" admin="mcollective"/>
+              <authorizationEntry topic="ActiveMQ.Advisory.>" read="everyone" write="everyone" admin="everyone"/>
+            </authorizationEntries>
+          </authorizationMap>
+        </map>
+      </authorizationPlugin>
+    </plugins>
 
-    <authorizationPlugin>
-      <map>
-        <authorizationMap>
-          <authorizationEntries>
-            <authorizationEntry topic=">" write="admin" read="admin" admin="admin" />
-            <authorizationEntry topic="ci.>" read="ci,admin" write="ci,admin" admin="ci,all"/>
-            <authorizationEntry topic="dev.>" write="dev,admin" read="dev,admin" admin="dev,admin" />
-            <authorizationEntry topic="uat.>" write="uat,admin" read="uat,admin" admin="uat,admin" />
-            <authorizationEntry topic="prod.>" write="prod,admin" read="prod,admin" admin="prod,admin" />
-            <authorizationEntry topic="ActiveMQ.Advisory.>" read="everyone,all" write="everyone,all" admin="everyone,all"/>
-          </authorizationEntries>
-        </authorizationMap>
-      </map>
-    </authorizationPlugin>
-  </plugins>
-</broker>
+    <systemUsage>
+      <systemUsage>
+        <memoryUsage>
+          <memoryUsage limit="20 mb"/>
+        </memoryUsage>
+        <storeUsage>
+          <storeUsage limit="1 gb" name="foo"/>
+        </storeUsage>
+        <tempUsage>
+          <tempUsage limit="100 mb"/>
+        </tempUsage>
+      </systemUsage>
+    </systemUsage>
+
+    <transportConnectors>
+      <transportConnector name="openwire" uri="tcp://0.0.0.0:6166"/>
+      <transportConnector name="stomp+nio" uri="stomp://0.0.0.0:6163"/>
+    </transportConnectors>
+  </broker>
+
+  <import resource="jetty.xml"/>
 </beans>
