@@ -6,7 +6,7 @@ class activemq {
 
   package { "activemq":
     ensure    => "present",
-    require   => [Package[puppetlabs-repo], Package["tanukiwrapper"]]
+    require   => [Package[puppetlabs-repo], Package["tanukiwrapper"], Package["java-1.6.0-openjdk"], Package["rubygem-stomp"]]
   }
 
   service { "activemq":
