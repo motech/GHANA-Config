@@ -18,7 +18,7 @@ namespace :agent do
     remote_execute(stop_puppet_command, node, user)
 
     puts "****executing first puppet update"
-    puppet_update_command = "sudo /usr/sbin/puppetd --no-daemonize --onetime --verbose --environment development"
+    puppet_update_command = "sudo /usr/sbin/puppetd --no-daemonize --onetime --verbose --environment noop"
     remote_execute(puppet_update_command, node, user)
 
     puts "****system setup successful!"

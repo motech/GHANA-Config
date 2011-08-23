@@ -6,3 +6,6 @@ node base {
 
 node default inherits base {
 }
+
+import "dev"
+import "ci"
