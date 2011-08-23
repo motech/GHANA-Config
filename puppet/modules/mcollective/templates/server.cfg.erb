@@ -2,14 +2,14 @@
 topicprefix = /topic/
 libdir = /usr/libexec/mcollective
 logfile = /var/log/mcollective.log
-collectives = mcollective,<%= $collective %>
+collectives = mcollective,<%= collective %>
 main_collective = mcollective
 daemonize = 1
 loglevel = info
 
 # connector plugin config
 connector = stomp
-plugin.stomp.host = sifynode11.thoughtworks.com
+plugin.stomp.host = <%= mcollective_server %>
 plugin.stomp.port = 6163
 plugin.stomp.user = motech
 plugin.stomp.password = MoTeCH
