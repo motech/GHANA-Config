@@ -2,7 +2,6 @@
 
 echo "Puppetmaster is $1"
 
-sudo rpm -Uvh http://yum.puppetlabs.com/base/puppetlabs-repo-3.0-2.noarch.rpm
 sudo rpm -Uvh http://download.fedora.redhat.com/pub/epel/5/x86_64/epel-release-5-4.noarch.rpm
 
 sudo yum install -y ruby rubygems rubygem-stomp
