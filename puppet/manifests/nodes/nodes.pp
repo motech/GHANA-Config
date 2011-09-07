@@ -10,4 +10,5 @@ node default inherits base {
 }
 
 import "dev"
+import "qa"
 import "ci"
