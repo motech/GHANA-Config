@@ -2,7 +2,7 @@ node ci inherits base {
   $collective = "ci"
 }
 
-node 'sifynode37.thoughtworks.com' inherits ci {
+node 'sifynode41.thoughtworks.com' inherits ci {
   include git
   include jenkins
 }
