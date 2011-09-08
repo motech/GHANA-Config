@@ -2,7 +2,8 @@ class tomcat {
   include repos::jpackage
 
   package { "tomcat6":
-    ensure  =>  "present"
+    ensure  =>  "present",
+    require => File['jpackage50']
   }
 
   service {"tomcat6":
