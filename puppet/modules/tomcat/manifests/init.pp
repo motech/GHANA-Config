@@ -1,4 +1,6 @@
 class tomcat {
+  include repos::jpackage
+
   package { "tomcat6":
     ensure  =>  "present"
   }
