@@ -5,7 +5,7 @@ def validate_args
 end
 
 def scp(files, node, user)
-  scp_command = "scp #{files} #{user}@#{node}:/tmp"
+  scp_command = "scp -P 12200 #{files} #{user}@#{node}:/tmp"
   puts "Secure copy: #{scp_command}"
   fail "error copying file: #{files} to target system" unless system(scp_command)
 end
@@ -15,7 +15,7 @@ def remote_execute_verify(command, node, user)
 end
 
 def remote_execute(command, node, user)
-  remote_execute_command = "ssh -t #{node} -l #{user} \"#{command}\""
+  remote_execute_command = "ssh -p 12200 -t #{node} -l #{user} \"#{command}\""
   puts "Executing: #{remote_execute_command}"
   system(remote_execute_command)
 end

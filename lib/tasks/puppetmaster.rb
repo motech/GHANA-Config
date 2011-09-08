@@ -19,6 +19,6 @@ class PuppetMaster
 
   def execute(command)
     puts "****executing: #{command}"
-    system("ssh -t #{@user}@#{@server} #{command}")
+    system("ssh -p 12200 -t #{@user}@#{@server} #{command}")
   end
 end
