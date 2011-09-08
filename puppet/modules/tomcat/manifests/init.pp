@@ -6,6 +6,11 @@ class tomcat {
     require => File['jpackage50']
   }
 
+  package { 'tomcat6-admin-webapps':
+    ensure => installed,
+    require => Package['tomcat6']
+  }
+
   service {"tomcat6":
       enable  => true,
       ensure  => "running",
