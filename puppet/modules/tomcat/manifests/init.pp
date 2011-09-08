@@ -1,4 +1,4 @@
-class tomcat6 {
+class tomcat {
   package { "tomcat6":
     ensure  =>  "present"
   }

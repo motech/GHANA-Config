@@ -3,5 +3,5 @@ node qa inherits base {
 }
 
 node 'sifynode43.thoughtworks.com' inherits qa {
-  include tomcat6
+  include tomcat
 }
