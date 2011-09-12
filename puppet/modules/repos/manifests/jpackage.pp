@@ -13,6 +13,12 @@ class repos::jpackage {
   file { "jpackage50":
     name => "/etc/yum.repos.d/jpackage50.repo",
     ensure => present,
-    source => "puppet://puppet/modules/repos/jpackage50.repo"
+    source => "puppet://puppet/modules/repos/jpackage50.repo",
+    require => Package["jpackage-utils"]
+  }
+
+  exec { 'yum-clean-expire-cache':
+    command => '/usr/bin/yum clean expire-cache',
+    require => File["jpackage50"]
   }
 }
