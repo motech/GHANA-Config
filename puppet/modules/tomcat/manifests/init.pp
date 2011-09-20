@@ -11,10 +11,15 @@ class tomcat {
     require => Package['tomcat6']
   }
 
+  file { "/etc/tomcat6/tomcat-users.xml":
+    source => "puppet://puppet/modules/tomcat/tomcat-users.xml",
+    require => Package["tomcat6-admin-webapps"],
+  }
+
   service {"tomcat6":
       enable  => true,
       ensure  => "running",
       hasrestart=> true,
-      require => Package["tomcat6"],
+      require => Package["/etc/tomcat6/tomcat-users.xml"]
   }
 }
