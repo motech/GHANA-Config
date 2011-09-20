@@ -1,6 +1,6 @@
 node dev inherits base {
-  $_collective = "dev"
-  include global
+  $collective = "dev"
+  include mcollective::agent
 }
 
 node 'sifynode42.thoughtworks.com' inherits dev {

@@ -1,6 +1,6 @@
 node ci inherits base {
-  $_collective = "ci"
-  include global
+  $collective = "ci"
+  include mcollective::agent
 }
 
 node 'sifynode41.thoughtworks.com' inherits ci {
