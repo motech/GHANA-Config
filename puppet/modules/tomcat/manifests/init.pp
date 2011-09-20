@@ -20,6 +20,6 @@ class tomcat {
       enable  => true,
       ensure  => "running",
       hasrestart=> true,
-      require => File["/etc/tomcat6/tomcat-users.xml"]
+      subscribe => File["/etc/tomcat6/tomcat-users.xml"]
   }
 }
