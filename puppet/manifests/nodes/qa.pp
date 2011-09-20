@@ -1,5 +1,6 @@
 node qa inherits base {
-  $collective = "qa"
+  $_collective = "qa"
+  include global
 }
 
 node 'sifynode43.thoughtworks.com' inherits qa {

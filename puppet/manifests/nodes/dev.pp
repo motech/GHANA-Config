@@ -1,5 +1,6 @@
 node dev inherits base {
-  $collective = "dev"
+  $_collective = "dev"
+  include global
 }
 
 node 'sifynode42.thoughtworks.com' inherits dev {
