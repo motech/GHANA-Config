@@ -5,6 +5,7 @@ class couchdb {
 
   service {"couchdb":
       enable  => true,
-      ensure  => "running"
+      ensure  => "running",
+      require => Package["couchdb"],
   }
 }
