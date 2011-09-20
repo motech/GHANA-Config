@@ -21,6 +21,7 @@ class mcollective::agent inherits mcollective {
     hasstatus  => true,
     hasrestart => true,
     ensure     => true,
-    require    => File["/etc/mcollective/server.cfg"]
+    require    => File["/etc/mcollective/server.cfg"],
+    subscribe => File["/etc/mcollective/server.cfg"]
   }
 }
